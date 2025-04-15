@@ -2,7 +2,22 @@ defmodule HelloPhoenixWeb.UserSessionController do
   use HelloPhoenixWeb, :controller
 
   alias HelloPhoenix.Accounts
+  alias HelloPhoenix.Accounts.User
   alias HelloPhoenixWeb.UserAuth
+
+  def create(conn, %{"token" => token} = _params) do
+    case Accounts.get_user_by_magic_link_token(token) do
+      %User{} = user ->
+        conn
+        |> put_flash(:info, "Welcome back!")
+        |> UserAuth.log_in_user(user)
+
+      _ ->
+        conn
+        |> put_flash(:error, "That link didn't seem to work. Please try again.")
+        |> redirect(to: ~p"/users/log_in")
+    end
+  end
 
   def create(conn, %{"_action" => "registered"} = params) do
     create(conn, params, "Account created successfully!")

@@ -54,11 +54,13 @@ defmodule HelloPhoenixWeb.Router do
       on_mount: [{HelloPhoenixWeb.UserAuth, :redirect_if_user_is_authenticated}] do
       live "/users/register", UserRegistrationLive, :new
       live "/users/log_in", UserLoginLive, :new
+      live "/users/magic_link", MagicLinkLive, :new
       live "/users/reset_password", UserForgotPasswordLive, :new
       live "/users/reset_password/:token", UserResetPasswordLive, :edit
     end
 
     post "/users/log_in", UserSessionController, :create
+    get "/users/log_in/:token", UserSessionController, :create
   end
 
   scope "/", HelloPhoenixWeb do

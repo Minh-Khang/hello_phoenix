@@ -59,6 +59,26 @@ defmodule HelloPhoenix.Accounts.UserNotifier do
   end
 
   @doc """
+  Deliver instructions to magic_link login.
+  """
+  def deliver_magic_link_instructions(user, url) do
+    deliver(user.email, "Login with Magic Link", """
+
+    ==============================
+
+    Hi #{user.email},
+
+    You can log in by visiting the URL below:
+
+    #{url}
+
+    If you didn't request this change, please ignore this.
+
+    ==============================
+    """)
+  end
+
+  @doc """
   Deliver instructions to update a user email.
   """
   def deliver_update_email_instructions(user, url) do
