@@ -9,7 +9,7 @@ defmodule HelloPhoenix.Accounts.UserNotifier do
     email =
       new()
       |> to(recipient)
-      |> from({"HelloPhoenix", "contact@example.com"})
+      |> from({"HelloPhoenix", "simon@jocamey.com"})
       |> subject(subject)
       |> text_body(body)
 
