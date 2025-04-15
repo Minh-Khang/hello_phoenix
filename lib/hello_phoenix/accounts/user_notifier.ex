@@ -1,4 +1,5 @@
 defmodule HelloPhoenix.Accounts.UserNotifier do
+  @moduledoc false
   import Swoosh.Email
 
   alias HelloPhoenix.Mailer

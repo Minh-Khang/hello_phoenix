@@ -6,7 +6,7 @@ defmodule HelloPhoenix.Accounts do
   import Ecto.Query, warn: false
   alias HelloPhoenix.Repo
 
-  alias HelloPhoenix.Accounts.{User, UserToken, UserNotifier}
+  alias HelloPhoenix.Accounts.{User, UserNotifier, UserToken}
 
   ## Database getters
 

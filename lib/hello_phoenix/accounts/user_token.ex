@@ -1,4 +1,5 @@
 defmodule HelloPhoenix.Accounts.UserToken do
+  @moduledoc false
   use Ecto.Schema
   import Ecto.Query
   alias HelloPhoenix.Accounts.UserToken

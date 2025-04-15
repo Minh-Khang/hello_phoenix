@@ -1,9 +1,9 @@
 defmodule HelloPhoenixWeb.UserAuthTest do
   use HelloPhoenixWeb.ConnCase, async: true
 
-  alias Phoenix.LiveView
   alias HelloPhoenix.Accounts
   alias HelloPhoenixWeb.UserAuth
+  alias Phoenix.LiveView
   import HelloPhoenix.AccountsFixtures
 
   @remember_me_cookie "_hello_phoenix_web_user_remember_me"

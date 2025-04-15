@@ -1,4 +1,5 @@
 defmodule HelloPhoenixWeb.UserAuth do
+  @moduledoc false
   use HelloPhoenixWeb, :verified_routes
 
   import Plug.Conn
