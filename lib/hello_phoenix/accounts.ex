@@ -328,6 +328,45 @@ defmodule HelloPhoenix.Accounts do
     end
   end
 
+  ## Magic link
+
+  @doc ~S"""
+  Delivers the magic link email to the given user.
+
+  ## Examples
+
+      iex> deliver_user_magic_link_instructions(user, &url(~p"/users/reset_password/#{&1}"))
+      {:ok, %{to: ..., body: ...}}
+
+  """
+  def deliver_user_magic_link_instructions(%User{} = user, reset_password_url_fun)
+      when is_function(reset_password_url_fun, 1) do
+    {encoded_token, user_token} = UserToken.build_email_token(user, "magic_link")
+    Repo.insert!(user_token)
+    UserNotifier.deliver_magic_link_instructions(user, reset_password_url_fun.(encoded_token))
+  end
+
+  @doc """
+  Gets the user by magic link token.
+
+  ## Examples
+
+      iex> get_user_by_magic_link_token("validtoken")
+      %User{}
+
+      iex> get_user_by_magic_link_token("invalidtoken")
+      nil
+
+  """
+  def get_user_by_magic_link_token(token) do
+    with {:ok, query} <- UserToken.verify_email_token_query(token, "magic_link"),
+         %User{} = user <- Repo.one(query) do
+      user
+    else
+      _ -> nil
+    end
+  end
+
   @doc """
   Resets the user password.
 
