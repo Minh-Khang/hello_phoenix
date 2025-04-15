@@ -97,7 +97,7 @@ jobs:
 
     # Step: Check code follow credo rule
     - name: Run credo
-        run: mix credo --strict
+      run: mix credo --strict
 
     # Step: Execute the tests.
     - name: Run tests
