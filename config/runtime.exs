@@ -114,7 +114,7 @@ if config_env() == :prod do
   #     config :swoosh, :api_client, Swoosh.ApiClient.Hackney
   #
   # See https://hexdocs.pm/swoosh/Swoosh.html#module-installation for details.
-  config :jocamey_app, JocameyApp.Mailer,
+  config :hello_phoenix, JocameyApp.Mailer,
     adapter: Swoosh.Adapters.Postmark,
     api_key:
       System.get_env("POSTMARK_API_KEY") ||
