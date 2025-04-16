@@ -1,7 +1,7 @@
 defmodule HelloPhoenix.Accounts.UserNotifier do
   @moduledoc false
   import Swoosh.Email
-
+  require Logger
   alias HelloPhoenix.Mailer
 
   # Delivers the email using the application mailer.
@@ -13,8 +13,14 @@ defmodule HelloPhoenix.Accounts.UserNotifier do
       |> subject(subject)
       |> text_body(body)
 
+    Logger.info("Delivering email to #{recipient}")
+    Logger.info("Subject: #{subject}")
+    Logger.info("Body: #{body}")
+
     with {:ok, _metadata} <- Mailer.deliver(email) do
       {:ok, email}
+    else
+      {:error, reason} -> raise reason
     end
   end
 
