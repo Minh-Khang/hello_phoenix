@@ -41,7 +41,7 @@ defmodule HelloPhoenixWeb.MagicLinkLive do
     if user = Accounts.get_user_by_email(email) do
       Accounts.deliver_user_magic_link_instructions(
         user,
-        &url(~p"/users/log_in/#{&1}")
+        &"#{HelloPhoenixWeb.Endpoint.url()}/users/log_in/#{&1}"
       )
     end
 
