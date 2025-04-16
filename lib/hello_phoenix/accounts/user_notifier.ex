@@ -17,9 +17,8 @@ defmodule HelloPhoenix.Accounts.UserNotifier do
     Logger.info("Subject: #{subject}")
     Logger.info("Body: #{body}")
 
-    with {:ok, _metadata} <- Mailer.deliver(email) do
-      {:ok, email}
-    else
+    case Mailer.deliver(email) do
+      {:ok, _metadata} -> {:ok, email}
       {:error, reason} -> raise reason
     end
   end
