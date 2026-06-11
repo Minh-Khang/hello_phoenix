@@ -75,6 +75,7 @@ defmodule HelloPhoenix.Accounts.User do
     else
       changeset
     end
+
   end
 
   defp maybe_validate_unique_email(changeset, opts) do
